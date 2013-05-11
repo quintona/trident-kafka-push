@@ -10,6 +10,13 @@ Include the dependency:
 	<artifactId>trident-kafka-push</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	
+And the required repository:
+
+	<repository>
+		<id>clojars.org</id>
+		<url>http://clojars.org/repo</url>
+	</repository>
+	
 Then add a partition persist to your stream:
 
 ``` 

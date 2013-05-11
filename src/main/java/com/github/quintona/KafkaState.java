@@ -77,8 +77,8 @@ public class KafkaState<T> implements State {
 
 	@Override
 	public void beginCommit(Long txid) {
-		
-
+		if(messages.size() > 0)
+			throw new RuntimeException("Kafka State is invalid, the previous transaction didn't flush");
 	}
 	
 	public void enqueue(String message){
@@ -96,10 +96,10 @@ public class KafkaState<T> implements State {
 	@Override
 	public void commit(Long txid) {
 		String message = messages.poll();
-		if(message != null){
+		while(message != null){
 			sendMessage(message);
+			message = messages.poll();
 		}
-
 	}
 
 }

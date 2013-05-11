@@ -19,7 +19,12 @@ public class KafkaStateUpdater extends BaseStateUpdater<KafkaState> {
 	public void updateState(KafkaState state, List<TridentTuple> tuples,
 			TridentCollector collector) {
 		for (TridentTuple t : tuples) {
-			state.enqueue(t.getStringByField(messageFieldName));
+			try{
+				if(t.size() > 0)
+					state.enqueue(t.getStringByField(messageFieldName));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 
 	}

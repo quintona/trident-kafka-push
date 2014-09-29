@@ -3,8 +3,6 @@ package com.github.quintona;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.alooma.commons.testing.KafkaTestingServer;
-
 import storm.kafka.ZkHosts;
 import storm.kafka.trident.TransactionalTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
@@ -55,9 +53,9 @@ public class TestTopology {
 			conf.put(Config.STORM_ZOOKEEPER_ROOT, "/storm");
 			LocalCluster cluster = new LocalCluster();
 			String zkConnectString = "127.0.0.1:2000";
-			KafkaTestingServer kafka = new KafkaTestingServer(zkConnectString);
-		    String testTopic = "test";
-		    kafka.addTopic(testTopic);
+			//KafkaTestingServer kafka = new KafkaTestingServer(zkConnectString);
+		    //String testTopic = "test";
+		    //kafka.addTopic(testTopic);
 
 			cluster.submitTopology("test-kafka-push", conf,
 					makeTopology().build());
